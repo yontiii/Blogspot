@@ -36,6 +36,11 @@ class Blog(db.Model):
     comments = db.relationship('Comments', backref = 'author' , lazy = True)
     
     
+    def save_blog():
+        db.session.add(self)
+        db.session.commit()
+    
+    
     def ___repr__():
         return f"Blog ('{self.title}', '{self.date_posted}'')"
     

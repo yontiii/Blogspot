@@ -18,7 +18,12 @@ def blogs():
     form = BlogForm()
     
     if form.validate_on_submit():
+        title = form.title.data 
+        content = form.content.data
         
-    
-    return render_template('blog.html')
+        new_blog = Blog(title = title, content = content)
+        new_blog.save_blog()
+        
+        return redirect('main.index')
+    return render_template('blog.html', form = form)
     
