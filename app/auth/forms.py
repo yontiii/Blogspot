@@ -1,11 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField
-from wtforms.validators import Required
+from wtforms import StringField,PasswordField,SubmitField,ValidationError
+from wtforms.validators import Required,Email,EqualTo
+from .. models import User
 
-class BlogForm(FlaskForm):
-    title = StringField("Blog Title", validators=[Required()])
-    content = TextAreaField("Add Content", validators=[Required()])
-    submit = SubmitField('Post Blog')
+class RegistrationForm(FlaskForm):
+    email = StringField('Your Email Address',validators=[Required(),Email()])
+    username = StringField('Enter your username',validators = [Required()])
+    password = PasswordField('Password',validators = [Required(), EqualTo('password_confirm',message = 'Passwords must match')])
+    password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
+    submit = SubmitField('Register')
     
-class CommentsForm(FlaskForm):
-    comment = TextAreaField("Add A Comment", validators=[Required()])
+    
+class LoginForm(FlaskForm):
+    
