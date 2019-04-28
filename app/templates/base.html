@@ -36,9 +36,7 @@ nav{
     background:#E0F7FA;
     line-height: 50px;
 }
-a{
-    color: 
-}
+
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
@@ -53,29 +51,31 @@ a{
         </button>
         
         <!-- Brand -->
-        <a class="navbar-brand" href="#">TRIGGER</a>
+        <a class="navbar-brand" href="{{url_for('main.index')}}">TRIGGER</a>
         
         <!-- Links -->
         <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
         <ul class="navbar-nav">
             {%  if current_user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="#">login</a>
+            <a class="nav-link" href="{{url_for('auth.login')}}">Account</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{url_for('main.blogs')}}">Create Blog</a>
+            </li>
+            {% else %}
         <li class="nav-item">
-        <a class="nav-link" href="#">login</a>
+        <a class="nav-link" href="{{url_for('auth.login')}}">login</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">Register</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Create Blog</a>
+        <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
+        {% endif %}
         </li>
         </ul>
         </nav>
 </div>
 
-
+{%  block content%}{% endblock %}
 
 
 

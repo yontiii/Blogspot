@@ -18,12 +18,12 @@ def register():
         flash(f"Account Created for {form.username.data}!","success")
         
         return redirect(url_for("auth.login"))
-    return render_template('register.html', form = form)
+    return render_template('auth/register.html', form = form)
 
 
 @auth.route('/login', methods = ["GET","POST"])
 def login():
-    if current_user.is_authenticates:
+    if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -37,7 +37,7 @@ def login():
         
         
     
-    return render_template('login.html', form = form)
+    return render_template('auth/login.html', form = form)
 
 @auth.route('/logout')
 def logout():
