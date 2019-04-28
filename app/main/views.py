@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from .. models import User,Blog,Comments
 from .forms import BlogForm,CommentsForm
 
-@main.route("/")
+@main.route("/index")
 def index():
     title = "G-Blogs"
     blogs = Blog.query.all()
@@ -21,9 +21,9 @@ def blogs():
         title = form.title.data 
         content = form.content.data
         
-        new_blog = Blog(title = title, content = content)
-        new_blog.save_blog()
+        blog = Blog(title = title, content = content, author = current_user )
+        blog.save_blog()
         
-        return redirect('main.index')
+        return redirect(url_for("main.index"))
     return render_template('blog.html', form = form)
     
