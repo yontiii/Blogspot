@@ -10,6 +10,18 @@ class RegistrationForm(FlaskForm):
     password_confirm = PasswordField('Confirm Passwords',validators = [Required()])
     submit = SubmitField('Register')
     
+    def validate_username(self, username):
+        user = User.query.filter_by(username = username.data).first()
+        
+        if user:
+            raise ValidationError("A User with that username exists! ")
+        
+    def validate_email(self, email):
+        user = User.query.filter_by(email = email.data).first()
+        
+        if user:
+            raise ValidationError("That Email is taken!")
+    
     
 class LoginForm(FlaskForm):
     email = StringField('Enter Your Email Address',validators=[Required(),Email()])
