@@ -32,5 +32,5 @@ def blogs():
 def details(blog_id):
     blogs = Blog.query.get_or_404(blog_id)
     
-    return render_template('blog_review.html' blogs = blogs)
+    return render_template('blog_review.html', blogs = blogs)
     

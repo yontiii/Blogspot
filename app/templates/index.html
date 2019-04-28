@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+ h4{
+    color:#18FFFF;
+    }
+    h5{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    p{
+        font-size: 15px;
+    }
+</style>
 <h3 class="text-muted" style="text-align:center;">TOP BLOGS</h3>
 
 
     <div class="row">
             {% for blog in blogs %}
         <div class="col-md-6">
-            <article class="card">
-                <div class="card-body">
-                    <div class="article-metadate">
-                        <h5> Posted By : {{blog.author.username}}</h5>
-                        <small class="text-muted"> Posted on : {{blog.date_posted.strftime('%Y-%m-%d')}}</small>
+            <div class="card-deck">
+                    <article class="card">
+                            <div class="card-body">
+                                <h4  class="card-title">{{blog.title}}</h4>
+                                <p class="card-content">{{blog.content}}</p>
+                                <div class="article-metadate">
+                                        <h6> Posted By : {{blog.author.username}}</h6>
+                                        <small class="text-muted"> Posted on : {{blog.date_posted.strftime('%Y-%m-%d')}}</small>
+                                    </div>
+                                    <button class="btn btn-outline-success">Read Blog</button>
+                            </div>
+                        </article>
                     </div>
-                    <h2> <a href="" class="card-title">{{blog.title}}</a></h2>
-                    <p class="card-content">{{blog.content}}</p>
-                </div>
-            </article>
-        </div>
+            </div>
+            
+           
         {%  endfor %}
     </div>        
 
