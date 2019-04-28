@@ -27,10 +27,22 @@ def blogs():
         return redirect(url_for("main.index"))
     return render_template('blog.html', form = form)
 
-@main.route('/blogs/<int:blog_id>', methods = ['GET','POST'])
+@main.route('/details/<int:id>', methods = ['GET','POST'])
 @login_required
-def details(blog_id):
-    blogs = Blog.query.get_or_404(blog_id)
+def details(id):
+    blog = Blog.query.get_or_404(id)
     
-    return render_template('blog_review.html', blogs = blogs)
+    return render_template('blog_review.html', blog = blog)
+
+
+@main.route('/details/<int:id>/update', methods = ['GET','POST'])
+@login_required
+def update_details(id):
+    blog = Blog.query.get_or_404(id)
+    if blog.author != current_user:
+        abort(403)
+        
+    form = BlogForm()
     
+    return redirect(url_for("main.index"))
+    return render_template('blog.html', form = form)
