@@ -22,8 +22,8 @@ def register():
 
 
 @auth.route('/login', methods = ["GET","POST"])
-def register():
-      if current_user.is_authenticates:
+def login():
+    if current_user.is_authenticates:
         return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
