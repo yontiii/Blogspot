@@ -63,6 +63,9 @@ nav{
             <li class="nav-item">
             <a class="nav-link" href="{{url_for('main.blogs')}}">Create Blog</a>
             </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('auth.logout')}}">logout</a>
+                    </li>
             {% else %}
         <li class="nav-item">
         <a class="nav-link" href="{{url_for('auth.login')}}">login</a>
