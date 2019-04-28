@@ -26,4 +26,11 @@ def blogs():
         
         return redirect(url_for("main.index"))
     return render_template('blog.html', form = form)
+
+@main.route('/blogs/<int:blog_id>', methods = ['GET','POST'])
+@login_required
+def details(blog_id):
+    blogs = Blog.query.get_or_404(blog_id)
+    
+    return render_template('blog_review.html' blogs = blogs)
     
