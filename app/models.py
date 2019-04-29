@@ -36,7 +36,7 @@ class Blog(db.Model):
     comments = db.relationship('Comments', backref = 'author' , lazy = True)
     
     
-    def save_blog(self):
+    def save_blog(self):00000000000000000
         db.session.add(self)
         db.session.commit()
     
