@@ -1,0 +1,76 @@
+
+<style>
+        h4{
+           color:#18FFFF;
+           }
+           h5{
+               font-family: Arial, Helvetica, sans-serif;
+           }
+           p{
+               font-size: 15px;
+           }
+       
+           small{
+            margin-bottom: 10px;
+            font-weight: bolder;
+        }
+       body{
+           background-color: #F5F5F5;
+       }
+       
+       h2{
+           font-weight: bold;
+           font-family: 'Anton', sans-serif;
+       
+       }
+       li{
+           text-align: right;
+       }
+       .intro{
+           background-image: url('https://images.pexels.com/photos/569169/pexels-photo-569169.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+           background-repeat: no-repeat;
+           background-size: cover;
+           width: 100;
+           height:80vh;
+           opacity:100;
+       }
+       nav{
+           background:#E0F7FA;
+           line-height: 50px;
+       }
+       </style>
+       <div class="intro">
+               <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+                   </button>
+                   
+                   <!-- Brand -->
+                   <a class="navbar-brand" href="{{url_for('main.index')}}">TRIGGER</a>
+                   
+                   <!-- Links -->
+                   <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
+                   <ul class="navbar-nav">
+                       {%  if current_user.is_authenticated %}
+                       <li class="nav-item">
+                       <a class="nav-link" href="{{url_for('auth.login')}}">Account</a>
+                       </li>
+                       <li class="nav-item">
+                       <a class="nav-link" href="{{url_for('main.blogs')}}">Create Blog</a>
+                       </li>
+                       <li class="nav-item">
+                               <a class="nav-link" href="{{url_for('auth.logout')}}">logout</a>
+                               </li>
+                       {% else %}
+                   <li class="nav-item">
+                   <a class="nav-link" href="{{url_for('auth.login')}}">login</a>
+                   </li>
+                   <li class="nav-item">
+                   <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
+                   {% endif %}
+                   </li>
+                   </ul>
+                   </nav>
+       
+                   
+           </div>

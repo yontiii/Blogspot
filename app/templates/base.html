@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BlogSpot</title>
-    <link href="https://fonts.googleapis.com/css?family=Anton|Gugi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
 </head>
 <style>
  small{
@@ -37,11 +37,30 @@ nav{
     line-height: 50px;
 }
 
+.content{
+    color:black;
+    background-color:#F5F5F5;
+    width:500px;
+    height:280px;
+    padding:10px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    opacity: 0.9;
+}
+p{
+   font-size:30px;
+   font-family: 'Tangerine', cursive;
+
+}
+
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <body>
     <div class="header" style="text-align:center;margin-top:10px;">
-        <h2>TRIGGER BLOGS</h2>
+        <h2 style="font-family: 'Tangerine', cursive;
+        font-size:50px;color:#18FFFF">TRIGGER BLOGS</h2>
         <small>Pour Your Heart Out</small>
     </div>
 <div class="intro">
@@ -76,6 +95,11 @@ nav{
         </li>
         </ul>
         </nav>
+        <div class="content">
+            <p>{{quote}}</p>
+            <br>
+            <blockquote>-{{quote_author}}</blockquote>
+        </div>
 </div>
 
 {%  block content%}{% endblock %}

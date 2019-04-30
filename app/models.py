@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), nullable = False)
     password = db.Column(db.String(255), nullable = False)
     profile_pic_path = db.Column(db.String(255))
-    blogs = db.relationship('Blog', backref = 'author', lazy = True)
+    blogs = db.relationship('Blog', backref = 'author', lazy = True) 
     
     def save_user(self):
         db.session.add(self)
@@ -36,7 +36,7 @@ class Blog(db.Model):
     comments = db.relationship('Comments', backref = 'author' , lazy = True)
     
     
-    def save_blog(self):00000000000000000
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
     
@@ -63,6 +63,14 @@ class Comments(db.Model):
         
 
     
+class Quote:
+   '''
+   quote class to define quote object
+   '''
+   def __init__(self,id,quote,author):
+       self.id = id
+       self.quote = quote
+       self.author = author
     
     
     
