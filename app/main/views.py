@@ -6,7 +6,7 @@ from .forms import BlogForm,CommentsForm
 from app import db
 from ..requests import get_quote
 
-@main.route("/index")
+@main.route("/")
 def index():
     title = "G-Blogs"
     blogs = Blog.query.all()
@@ -37,6 +37,16 @@ def blogs():
 @login_required
 def details(id):
     blog = Blog.query.get_or_404(id)
+    # form = CommentsForm()
+    # comments = Comments.query.all()
+    
+    # if form.validate_on_submit():
+    #     comment = form.comment.data
+    #     new_comment = Comments(comment = comment)
+    #     new_comment.save_comment()
+        
+    #     return redirect(url_for('main.details'))
+        
     
     return render_template('blog_review.html', blog = blog)
 
@@ -54,7 +64,7 @@ def update_details(id):
         blog.content = form.content.data
         db.session.commit()
         flash("Your Post Has Been Updated!")
-        return redirect(url_for('main.details'))
+        return redirect(url_for('main.update_details'))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
@@ -62,14 +72,15 @@ def update_details(id):
     return render_template('blog.html', title = 'Update Post', form = form, legend = 'Update Post')
     
     
-@main.route('/details/<int:blog_id>/delete', methods = ['POST'])
+@main.route('/details/<int:id>/delete', methods = ['POST'])
 @login_required
-def delete_post(blog_id):
+def delete_post(id):
     blog = Blog.query.get_or_404(id)
     if blog.author != current_user:
         abort(403)
     db.session.delete(blog)
     db.session.commit()
+    flash("Your Post Has Been Deleted")
     return redirect(url_for('main.index'))
                                 
                                 
